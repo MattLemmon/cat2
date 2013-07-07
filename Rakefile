@@ -1,23 +1,23 @@
   require 'rubygems'
   require 'bundler/setup' # Releasy requires that your application uses bundler.
   require 'releasy'
-
+#  gemspecs.delete_if {|n| 'json'.include? n }
   #<<<
   Releasy::Project.new do
     name "cat-game"
     version "0.0.1"
-    verbose # Can be removed if you don't want to see all build messages.
+#    verbose # Can be removed if you don't want to see all build messages.
 
     executable "bin/cat-game.rb"
-    files "lib/**/*.rb", "config/**/*.yml", "media/**/*.*"
-    exposed_files "README.html", "LICENSE.txt"
+    files ["lib/**/*.rb", "config/**/*.yml", "media/**/*.*"]
+    exposed_files ["readme.txt", "license.txt"]
     add_link "http://github.com/MattLemmon/cat-game", "cat-game website"
     exclude_encoding # Applications that don't use advanced encoding (e.g. Japanese characters) can save build size with this.
 
     # Create a variety of releases, for all platforms.
     add_build :osx_app do
       url "http://github.com/MattLemmon/cat-game"
-      wrapper "wrappers/gosu-mac-wrapper-0.7.41.tar.gz" # Assuming this is where you downloaded this file.
+      wrapper "wrappers/gosu-mac-0.7.29.tar.gz" # Assuming this is where you downloaded this file.
       icon "media/icon.icns"
       add_package :tar_gz
     end
